@@ -1,4 +1,4 @@
-#version 130
+#version 150
 
 //Vector to light source
 in vec4 lightVec;

@@ -1,4 +1,4 @@
-#version 130
+#version 150
 
 //Input position (coordinates within texture)
 in vec2 pos;

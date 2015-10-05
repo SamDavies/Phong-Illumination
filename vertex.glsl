@@ -1,4 +1,4 @@
-#version 130
+#version 150
 
 //Inputs:
 //Uniforms
@@ -44,6 +44,12 @@ out vec4 normOut;
 
 void main() {
 	vec4 v=vec4(position,1.0);
+	vec4 n=vec4(normal,1.0);
+
+	sam = model * V
+
+
+
 	/*calculate transformed vertex position*/
 	/*calculate transformed normal vector from input vector normal (store in normOut)*/
 	/*calculate vector from transformed vertex to light source (store in lightVec)*/

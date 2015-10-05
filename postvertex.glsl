@@ -1,4 +1,4 @@
-#version 130
+#version 150
 
 //You should not need to modify this file!
 //Simply takes a 2d coordinate and generates pos in the range 0 to 1 to index into our texture for the image of the model on the screen
