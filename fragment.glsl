@@ -30,10 +30,20 @@ out vec4 outColour;
    outColour is a vec4 containing the RGBA colour as floating point values between 0 and 1. outColour.r, outColour.g, outColour.b and outColour.a can be used to access the components of a vec4 (as well as .x .y .z .w)
 */
 
-void main() {	
+void main() {
+	float lightIntensity = 1.0;
+	float diffRelectivity = 0.5;
+	float specRelectivity = 0.5;
+	float specIntensity = 5.0;
+
 	//Modify this code to calculate Phong illumination based on the inputs
-	float diff=0.4;
-	float spec=0.2;
-	float ambient=0.2;
+	float diff = lightIntensity * diffRelectivity * max(0, dot(lightVec, normOut));
+//    diff = 0.0;
+
+    float cosA = max(0.0, dot(2*normOut * dot(lightVec, normOut ) - lightVec, eyeVec));
+	float spec = lightIntensity * specRelectivity * pow(cosA, specIntensity);
+
+
+	float ambient=0.1;
 	outColour = vec4(spec+ambient, spec+diff+ambient, spec+ambient, 1.0);
 }

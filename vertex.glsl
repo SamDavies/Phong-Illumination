@@ -44,16 +44,16 @@ out vec4 normOut;
 
 void main() {
 	vec4 v=vec4(position,1.0);
-	vec4 n=vec4(normal,1.0);
-
-	sam = model * V
-
-
+	vec4 n=vec4(normal,0.0);
 
 	/*calculate transformed vertex position*/
+	vec4 trans = model * v;
 	/*calculate transformed normal vector from input vector normal (store in normOut)*/
+	normOut = normalize(normTrans * n);
 	/*calculate vector from transformed vertex to light source (store in lightVec)*/
+	lightVec = normalize(lightPos-trans);
 	/*calculate vector from transformed vertex to eye (store in eyeVec)*/
+	eyeVec = normalize(eyePos-trans);
 	/*output position of vertex on screen */
-	gl_Position=v;
+	gl_Position=proj * view * model * v;
 }
