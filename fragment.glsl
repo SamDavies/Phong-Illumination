@@ -31,6 +31,7 @@ out vec4 outColour;
 */
 
 void main() {
+    // parameters
 	float lightIntensity = 1.0;
 	float diffRelectivity = 0.5;
 	float specRelectivity = 0.5;
@@ -38,18 +39,16 @@ void main() {
 	float ambient=0.1;
 	float texRatio = 0.2;
 
-	//Modify this code to calculate Phong illumination based on the inputs
+	// Phong illumination
 	float diff = lightIntensity * diffRelectivity * max(0, dot(lightVec, normOut));
-//    diff = 0.0;
-
     float cosA = max(0.0, dot(2*normOut * dot(lightVec, normOut ) - lightVec, eyeVec));
 	float spec = lightIntensity * specRelectivity * pow(cosA, specIntensity);
+	vec4 phong = vec4(spec+ambient, spec+diff+ambient, spec+ambient, 1.0);
 
-
+    // texture mapping
     vec4 eyeRelfection = 2*normOut * dot(eyeVec, normOut ) - eyeVec;
     vec4 texVec = texture(tex, normalize(vec2(eyeRelfection.x, eyeRelfection.y)));
 
-
-	vec4 phong = vec4(spec+ambient, spec+diff+ambient, spec+ambient, 1.0);
+    // pixel colour output
 	outColour = (texRatio * texVec) + ((1-texRatio) * phong);
 }
